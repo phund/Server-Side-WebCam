@@ -1,7 +1,7 @@
 var io = require('socket.io').listen(8080);
 var fs = require('fs');
 var pic = io.of('/picture');
-var folder = '/tmp/motion/';
+var folder = '/home/white-eagle/Documents/node/Server-Side-WebCam/tmp/motion/';
 io.set('log level', 1);
 var lastImage = null;
 var noImage = false;
@@ -16,7 +16,7 @@ sendImage(lastImage);
 
 function sendImage(imgData){
     if(imgData != null){
-        pic.volatile.emit('frame', {
+        pic.emit('frame', {
         data : lastImage.toString('base64'),
         'clients' : clients
         });
